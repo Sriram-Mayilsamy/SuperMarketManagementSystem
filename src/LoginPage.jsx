@@ -1,19 +1,35 @@
 import React, { useState } from 'react';
 import { Button, TextField, Typography, Container } from '@mui/material';
 import { AccountCircle } from '@mui/icons-material';
-import { orange } from '@mui/material/colors';
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const validUsername = '123';
+    const validPassword = '123';
+
+    if (username === validUsername && password === validPassword) {
+      navigate('/selection'); // Redirect to the selection page after successful login
+    } else {
+      setError('Invalid username or password');
+    }
+  };
 
   return (
     <Container component="main" maxWidth="xs">
       <div style={{ marginTop: '100px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <Typography component="h1" variant="h5" style={{ marginBottom: '20px' }}>
-          Login :)
+          Login
         </Typography>
-        <form style={{ width: '100%' }}>
+        {error && <Typography color="error" style={{ marginBottom: '20px' }}>{error}</Typography>}
+        <form style={{ width: '100%' }} onSubmit={handleSubmit}>
           <TextField
             variant="outlined"
             margin="normal"
@@ -26,7 +42,7 @@ const LoginPage = () => {
             placeholder="Enter your username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            InputLabelProps={{ style: { color: '#ccc' } }} // Customize input label color
+            InputLabelProps={{ style: { color: '#ccc' } }}
           />
           <TextField
             variant="outlined"
@@ -41,7 +57,7 @@ const LoginPage = () => {
             placeholder="Enter your password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            InputLabelProps={{ style: { color: '#ccc' } }} // Customize input label color
+            InputLabelProps={{ style: { color: '#ccc' } }}
           />
           <Button
             type="submit"
