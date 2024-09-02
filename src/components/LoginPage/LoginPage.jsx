@@ -27,12 +27,16 @@ const LoginPage = () => {
   };
 
   return (
-    <Container component="main" maxWidth="xs">
-      <div style={{ marginTop: '100px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+    <Container component="main" maxWidth="xs" style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
+        {/* Placeholder for the logo */}
+        <img src="/path-to-your-logo.png" alt="Logo" style={{ marginBottom: '20px' }} />
+        
         <Typography component="h1" variant="h5" style={{ marginBottom: '20px' }}>
           Login
         </Typography>
         {error && <Typography color="error" style={{ marginBottom: '20px' }}>{error}</Typography>}
+        
         <form style={{ width: '100%' }} onSubmit={handleSubmit}>
           <TextField
             variant="outlined"
@@ -47,6 +51,7 @@ const LoginPage = () => {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             InputLabelProps={{ style: { color: '#ccc' } }}
+            style={{ backgroundColor: '#fafafa' }}
           />
           <TextField
             variant="outlined"
@@ -62,26 +67,25 @@ const LoginPage = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             InputLabelProps={{ style: { color: '#ccc' } }}
+            style={{ backgroundColor: '#fafafa' }}
           />
           <Button
             type="submit"
             fullWidth
             variant="contained"
             color="primary"
-            style={{ marginTop: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+            style={{ marginTop: '20px', backgroundColor: '#0095f6', color: '#fff' }}
             startIcon={<AccountCircle />}
           >
             Login
           </Button>
         </form>
-        <Grid container justifyContent="flex-end" style={{ marginTop: '20px' }}>
+        
+        <Grid container justifyContent="center" style={{ marginTop: '20px' }}>
           <Grid item>
-            <Button
-              color="secondary"
-              onClick={handleSignupRedirect}
-            >
-              Don't have an account? Sign Up
-            </Button>
+            <Typography variant="body2" color="textSecondary">
+              Don't have an account? <Button color="primary" onClick={handleSignupRedirect} style={{ padding: 0 }}>Sign Up</Button>
+            </Typography>
           </Grid>
         </Grid>
       </div>
