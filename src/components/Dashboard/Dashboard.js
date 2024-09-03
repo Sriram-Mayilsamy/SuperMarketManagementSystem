@@ -1,6 +1,8 @@
 import React from 'react';
-import { Paper, Grid, Typography } from '@mui/material';
+import { Paper, Grid, Typography, Button } from '@mui/material';
 import { BarChart, Bar, PieChart, Pie, Tooltip, ResponsiveContainer, Cell, XAxis, YAxis, Legend } from 'recharts';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../Firebase/AuthContext'; // Ensure correct import
 import './Dashboard.css';
 
 const dataSales = [
@@ -22,12 +24,34 @@ const dataProducts = [
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
 const Dashboard = () => {
+  const { logout } = useAuth(); // Destructure logout from useAuth
+  const navigate = useNavigate(); // Initialize useNavigate
+
+  const handleLogout = async () => {
+    try {
+      await logout(); // Call the logout function
+      navigate('/'); // Navigate to login page
+    } catch (error) {
+      console.error('Failed to log out:', error);
+    }
+  };
+
   return (
     <div className="dashboard-container">
       <Typography variant="h4" gutterBottom>
         Supermarket Dashboard
       </Typography>
-      
+
+      {/* Add Logout Button */}
+      <Button 
+        variant="contained" 
+        color="secondary" 
+        onClick={handleLogout} 
+        style={{ marginBottom: '20px' }}
+      >
+        Logout
+      </Button>
+
       <Grid container spacing={3}>
         <Grid item xs={12} md={6}>
           <Paper className="dashboard-paper">

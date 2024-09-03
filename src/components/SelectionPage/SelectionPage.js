@@ -1,13 +1,19 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Container, Grid, Card, CardContent, Typography, Button } from '@mui/material';
+import { useAuth } from '../Firebase/AuthContext'; // Import useAuth
 
 const SelectionPage = () => {
   const navigate = useNavigate();
+  const { logout } = useAuth(); // Get logout function from AuthContext
 
-  const handleLogout = () => {
-    // Perform any logout logic here, such as clearing authentication tokens
-    navigate('/');
+  const handleLogout = async () => {
+    try {
+      await logout(); // Call the logout function
+      navigate('/'); // Redirect to login page
+    } catch (error) {
+      console.error('Failed to log out:', error);
+    }
   };
 
   const options = [
