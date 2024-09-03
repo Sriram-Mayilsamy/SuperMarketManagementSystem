@@ -1,17 +1,25 @@
 import React, { useState } from 'react';
 import { Button, TextField, Typography, Container } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from '../Firebase/FireBaseConfiguration'; // Adjust the path based on your file structure
 
 const SignupPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Redirect to the selection page after signup
-    navigate('/selection');
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+      // Redirect to the selection page after successful signup
+      navigate('/selection');
+    } catch (error) {
+      setError('Error creating account. Please try again.');
+    }
   };
 
   return (
@@ -20,6 +28,7 @@ const SignupPage = () => {
         <Typography component="h1" variant="h5" style={{ marginBottom: '20px' }}>
           Sign Up
         </Typography>
+        {error && <Typography color="error" style={{ marginBottom: '20px' }}>{error}</Typography>}
         <form style={{ width: '100%' }} onSubmit={handleSubmit}>
           <TextField
             variant="outlined"

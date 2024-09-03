@@ -2,23 +2,37 @@ import React, { useState } from 'react';
 import { Button, TextField, Typography, Container, Grid } from '@mui/material';
 import { AccountCircle } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from '../Firebase/FireBaseConfiguration'; // Adjust the path based on your file structure
 
 const LoginPage = () => {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const validUsername = '123';
-    const validPassword = '123';
+    // Basic validation
+    if (!email || !password) {
+      setError('Please enter both email and password');
+      return;
+    }
 
-    if (username === validUsername && password === validPassword) {
+    // Basic email format validation
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+      setError('Invalid email format');
+      return;
+    }
+
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
       navigate('/selection'); // Redirect to the selection page after successful login
-    } else {
-      setError('Invalid username or password');
+    } catch (error) {
+      console.error("Error signing in:", error); // Log error details
+      setError('Invalid email or password');
     }
   };
 
@@ -43,15 +57,16 @@ const LoginPage = () => {
             margin="normal"
             required
             fullWidth
-            id="username"
-            label="Username"
-            name="username"
-            autoComplete="username"
-            placeholder="Enter your username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            id="email"
+            label="Email"
+            name="email"
+            autoComplete="email"
+            placeholder="Enter your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             InputLabelProps={{ style: { color: '#ccc' } }}
             style={{ backgroundColor: '#fafafa' }}
+            type="email" // HTML5 email type for built-in validation
           />
           <TextField
             variant="outlined"
