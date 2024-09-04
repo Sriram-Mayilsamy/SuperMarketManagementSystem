@@ -7,7 +7,7 @@ import Dashboard from './components/Dashboard/Dashboard';
 import ProductCatalogue from './components/ProductCatalogue/ProductCatalogue';
 import ReportGeneration from './components/ReportGeneration/ReportGeneration';
 import ShoppingSite from './components/ShoppingSite/ShoppingSite';
-import PrivateRoute from './components/PrivateRoute';
+import PrivateRoute from './components/Firebase/PrivateRoute';
 import { AuthProvider } from './components/Firebase/AuthContext'; // Import AuthProvider
 
 function App() {
