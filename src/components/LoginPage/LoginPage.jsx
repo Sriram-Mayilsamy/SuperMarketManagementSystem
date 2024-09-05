@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import { Button, TextField, Typography, Container, Grid, Box } from '@mui/material';
+import { Button, TextField, Typography, Box, Grid } from '@mui/material';
 import { AccountCircle } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../Firebase/FireBaseConfiguration'; // Adjust the path based on your file structure
 
-// Import the logo image
+// Import the logo and banner images
 import logo from './logo.jpeg'; // Update with the correct relative path
+import leftBannerImage from './leftbanner.png'; // Update with the correct relative path
+import rightBannerImage from './rightbanner.png'; // Update with the correct relative path
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -44,16 +46,53 @@ const LoginPage = () => {
   };
 
   return (
-    <Container component="main" maxWidth="xs" style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    <Box sx={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
+      
+      {/* Left and Right Banners */}
+      <Box sx={{ display: 'flex', width: '100%', height: '100%' }}>
+        {/* Left Banner */}
+        <Box sx={{ flex: 1, backgroundColor: '#f0f0f0' }}>
+          <img
+            src={leftBannerImage}  // Use the imported variable for the banner image
+            alt="Left Banner"
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          />
+        </Box>
+        
+        {/* Right Banner */}
+        <Box sx={{ flex: 1, backgroundColor: '#e0e0e0' }}>
+          <img
+            src={rightBannerImage}  // Use the imported variable for the banner image
+            alt="Right Banner"
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          />
+        </Box>
+      </Box>
+
+      {/* Login Form */}
       <Box 
         sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
+          position: 'absolute',
+          width: '300px',  // Keep the form lean
           backgroundColor: '#ffffff',
           padding: '40px',
           borderRadius: '12px',
-          boxShadow: '0 6px 12px rgba(0, 0, 0, 0.1)',
+          border: '2px solid transparent', // Set initial border to transparent
+          boxShadow: '0 0 15px rgba(64, 64, 64, 0.8)', // Dark grey neon effect
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          '&::before': {
+            content: '""',
+            position: 'absolute',
+            top: '4px',
+            left: '4px',
+            right: '4px',
+            bottom: '4px',
+            border: '1px solid #f50057', // Pink border
+            borderRadius: '10px',
+            zIndex: -1,
+          },
         }}
       >
         {/* Fancy Header Text */}
@@ -62,8 +101,9 @@ const LoginPage = () => {
           component="h1"
           sx={{
             marginBottom: '20px',
-            color: '#0095f6',
-            fontFamily: 'cursive',
+            color: '#6f4f28', // Brown color
+            fontFamily: 'Times New Roman', // Roman-style font
+            fontWeight: 'bold',
             textAlign: 'center',
           }}
         >
@@ -74,11 +114,11 @@ const LoginPage = () => {
         <img 
           src={logo}  // Use the imported image variable
           alt="Logo" 
-          style={{ marginBottom: '20px', width: '100px', height: 'auto' }} 
+          style={{ marginBottom: '20px', width: '100px', height: 'auto', display: 'block' }} 
         />
-        
+
         {error && <Typography color="error" sx={{ marginBottom: '20px' }}>{error}</Typography>}
-        
+
         <form onSubmit={handleSubmit} style={{ width: '100%' }}>
           <TextField
             variant="outlined"
@@ -88,13 +128,13 @@ const LoginPage = () => {
             id="email"
             label="Email"
             name="email"
-            autoComplete="off"  // Prevent autofill for email
+            autoComplete="off"
             placeholder="Enter your email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             InputLabelProps={{ style: { color: '#ccc' } }}
             sx={{ backgroundColor: '#fafafa', marginBottom: '20px' }}
-            type="email" // HTML5 email type for built-in validation
+            type="email"
           />
           <TextField
             variant="outlined"
@@ -105,7 +145,7 @@ const LoginPage = () => {
             label="Password"
             type="password"
             id="password"
-            autoComplete="new-password"  // Prevent autofill for password
+            autoComplete="new-password"
             placeholder="Enter your password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -123,7 +163,7 @@ const LoginPage = () => {
             Login
           </Button>
         </form>
-        
+
         <Grid container justifyContent="center" sx={{ marginTop: '20px' }}>
           <Grid item>
             <Typography variant="body2" color="textSecondary">
@@ -132,7 +172,7 @@ const LoginPage = () => {
           </Grid>
         </Grid>
       </Box>
-    </Container>
+    </Box>
   );
 };
 
