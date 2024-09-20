@@ -1,0 +1,89 @@
+/* Dark mode for the SelectionPage */
+
+.selection-page {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #1c1c1f; /* Dark background similar to ChatGPT dark mode */
+  }
+  
+  /* Sidebar styling */
+  .sidebar {
+    width: 240px;
+    background-color: #333333; /* Dark sidebar background */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    box-shadow: 2px 0px 8px rgba(0, 0, 0, 0.5); /* Darker shadow for separation */
+  }
+  
+  .sidebar-title {
+    font-size: 22px;
+    font-weight: bold;
+    color: #ffffff; /* White text for the sidebar title */
+    margin-bottom: 20px;
+  }
+  
+  .sidebar-list {
+    width: 100%;
+    padding: 0 15px; /* Add padding for inner borders */
+  }
+  
+  .sidebar-item {
+    width: 100%;
+    text-align: center;
+    padding: 12px;
+    font-size: 18px;
+    font-family: 'Arial, sans-serif';
+    color: #ffffff; /* White text for sidebar items (default) */
+    background-color: #444444; /* Darker background for the item itself */
+    border: 1px solid transparent; /* No visible border by default */
+    border-radius: 12px; /* Rounded corners */
+    margin-bottom: 12px; /* Space between items */
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .sidebar-item:hover {
+    background-color: #555555; /* Lighter hover effect for dark mode */
+    color: #ffffff; /* Keep text white on hover */
+    border-color: #ffffff; /* Add white border on hover */
+  }
+  
+  .sidebar-item a {
+    color: inherit; /* Inherit white color for links inside sidebar items */
+    text-decoration: none; /* Remove underline from links */
+    display: block; /* Make the link fill the entire list item */
+  }
+  
+  /* Main content styling */
+  .main-content {
+    flex-grow: 1;
+    background-color: #2d2d31; /* Darker main content background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .main-container {
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .content-box {
+    background-color: rgba(0, 0, 0, 0.6); /* Slightly transparent dark background */
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+  }
+  
+  .welcome-text {
+    color: #ffffff; /* White text for the welcome message */
+    font-family: 'Arial, sans-serif';
+    font-size: 28px;
+  }
+  

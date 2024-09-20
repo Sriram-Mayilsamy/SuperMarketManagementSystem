@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button, TextField, Typography, Box, Grid } from '@mui/material';
 import { AccountCircle } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../Firebase/FireBaseConfiguration'; // Adjust the path based on your file structure
 
 // Import the logo and banner images
@@ -53,7 +53,7 @@ const LoginPage = () => {
         {/* Left Banner */}
         <Box sx={{ flex: 1, backgroundColor: '#f0f0f0' }}>
           <img
-            src={leftBannerImage}  // Use the imported variable for the banner image
+            src={leftBannerImage}
             alt="Left Banner"
             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
           />
@@ -62,7 +62,7 @@ const LoginPage = () => {
         {/* Right Banner */}
         <Box sx={{ flex: 1, backgroundColor: '#e0e0e0' }}>
           <img
-            src={rightBannerImage}  // Use the imported variable for the banner image
+            src={rightBannerImage}
             alt="Right Banner"
             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
           />
@@ -73,7 +73,7 @@ const LoginPage = () => {
       <Box 
         sx={{
           position: 'absolute',
-          width: '300px',  // Keep the form lean
+          width: '300px', // Keep the form lean
           backgroundColor: '#ffffff',
           padding: '40px',
           borderRadius: '12px',
@@ -112,8 +112,8 @@ const LoginPage = () => {
 
         {/* Logo */}
         <img 
-          src={logo}  // Use the imported image variable
-          alt="Logo" 
+          src={logo}
+          alt="Logo"
           style={{ marginBottom: '20px', width: '100px', height: 'auto', display: 'block' }} 
         />
 
