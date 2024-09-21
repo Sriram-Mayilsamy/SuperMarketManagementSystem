@@ -8,15 +8,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import ReceiptIcon from '@mui/icons-material/Receipt';
 import DeleteIcon from '@mui/icons-material/Delete';
-
-// Mock data
-const products = [
-  { id: 1, name: 'Apple', price: 0.5, barcode: '123456' },
-  { id: 2, name: 'Banana', price: 0.3, barcode: '234567' },
-  { id: 3, name: 'Milk', price: 2.5, barcode: '345678' },
-  { id: 4, name: 'Orange', price: 0.6, barcode: '456789' },
-  { id: 5, name: 'Bread', price: 1.0, barcode: '567890' },
-];
+import products from '../Products/Products';
 
 const PointOfSale = () => {
   const [cart, setCart] = useState([]);
@@ -49,7 +41,8 @@ const PointOfSale = () => {
   const handleBarcodeChange = useCallback((e) => {
     const value = e.target.value;
     setBarcode(value);
-    if (value) {
+
+    if (value.length > 0) {
       const filtered = products.filter(p =>
         p.name.toLowerCase().includes(value.toLowerCase()) ||
         p.barcode.includes(value)
@@ -134,10 +127,19 @@ const PointOfSale = () => {
         <Menu
           anchorEl={anchorEl}
           open={Boolean(anchorEl) && filteredProducts.length > 0}
-          onClose={() => setAnchorEl(null)}
+          onClose={() => {
+            setAnchorEl(null);
+            setFilteredProducts([]);
+          }}
         >
           {filteredProducts.map(product => (
-            <MenuItem key={product.id} onClick={() => addToCart(product)}>
+            <MenuItem 
+              key={product.id} 
+              onClick={() => {
+                addToCart(product);
+                setAnchorEl(null); // Close the menu after selecting
+              }}
+            >
               {product.name} - ${product.price.toFixed(2)}
             </MenuItem>
           ))}
