@@ -7,6 +7,7 @@ import Dashboard from './components/Dashboard/Dashboard';
 import ProductCatalogue from './components/ProductCatalogue/ProductCatalogue';
 import ReportGeneration from './components/ReportGeneration/ReportGeneration';
 import ShoppingSite from './components/ShoppingSite/ShoppingSite';
+import Sales from './components/Sales/Sales'; // New Sales component import
 import PrivateRoute from './components/Firebase/PrivateRoute';
 import { AuthProvider } from './components/Firebase/AuthContext';
 import NetworkStatusBar from './components/NetworkStatusBar/NetworkStatusBar';
@@ -17,7 +18,7 @@ function App() {
       <AuthProvider>
         <div className="App">
           <NetworkStatusBar />
-          
+
           <Routes>
             <Route path="/" element={<LoginPage />} />
             <Route path="/signup" element={<SignupPage />} />
@@ -58,6 +59,14 @@ function App() {
               element={
                 <PrivateRoute>
                   <ShoppingSite />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/sales"
+              element={
+                <PrivateRoute>
+                  <Sales />
                 </PrivateRoute>
               }
             />

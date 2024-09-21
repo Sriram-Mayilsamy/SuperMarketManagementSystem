@@ -1,0 +1,63 @@
+.pos-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Full viewport height */
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #f9f9f9; /* Light background for contrast */
+}
+
+.pos-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.pos-body {
+  flex: 1; /* Allow this section to take up available space */
+  overflow: auto; /* Enable scrolling if content overflows */
+  margin-bottom: 20px;
+}
+
+.pos-alert {
+  margin-bottom: 20px;
+}
+
+.pos-table {
+  margin-bottom: 20px;
+}
+
+.pos-actions {
+  margin-top: 20px;
+}
+
+.pos-total {
+  font-weight: bold;
+}
+
+.pos-checkout {
+  margin-top: auto; /* Pushes the checkout button to the bottom */
+  display: flex;
+  flex-direction: column;
+}
+
+.pos-checkout button {
+  width: 100%; /* Full width for the button */
+  margin: 5px 0; /* Space between buttons */
+  font-size: 0.9rem; /* Smaller font size for laptop view */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .pos-checkout button {
+    font-size: 0.8rem; /* Even smaller font size for smaller screens */
+  }
+
+  .pos-body {
+    margin-bottom: 10px;
+  }
+
+  .pos-header {
+    font-size: 1.5rem; /* Adjust header size for smaller screens */
+  }
+}
