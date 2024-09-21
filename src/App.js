@@ -8,16 +8,15 @@ import ProductCatalogue from './components/ProductCatalogue/ProductCatalogue';
 import ReportGeneration from './components/ReportGeneration/ReportGeneration';
 import ShoppingSite from './components/ShoppingSite/ShoppingSite';
 import PrivateRoute from './components/Firebase/PrivateRoute';
-import { AuthProvider } from './components/Firebase/AuthContext'; // Import AuthProvider
-import NetworkStatusBar from './components/NetworkStatusBar/NetworkStatusBar'; // Import the NetworkStatusBar component
+import { AuthProvider } from './components/Firebase/AuthContext';
+import NetworkStatusBar from './components/NetworkStatusBar/NetworkStatusBar';
 
 function App() {
   return (
     <Router>
-      <AuthProvider> {/* Wrap your app with AuthProvider */}
+      <AuthProvider>
         <div className="App">
-          {/* Network Status Bar */}
-          <NetworkStatusBar /> {/* Display the network status bar globally */}
+          <NetworkStatusBar />
           
           <Routes>
             <Route path="/" element={<LoginPage />} />

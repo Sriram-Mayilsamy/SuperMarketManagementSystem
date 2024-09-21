@@ -18,14 +18,11 @@ const LoginPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Basic validation
     if (!email || !password) {
       setError('Please enter both email and password');
       return;
     }
 
-    // Basic email format validation
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailPattern.test(email)) {
       setError('Invalid email format');
@@ -34,9 +31,9 @@ const LoginPage = () => {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      navigate('/selection'); // Redirect to the selection page after successful login
+      navigate('/selection');
     } catch (error) {
-      console.error("Error signing in:", error); // Log error details
+      console.error("Error signing in:", error);
       setError('Invalid email or password');
     }
   };
@@ -47,62 +44,36 @@ const LoginPage = () => {
 
   return (
     <Box sx={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
-      
-      {/* Left and Right Banners */}
       <Box sx={{ display: 'flex', width: '100%', height: '100%' }}>
-        {/* Left Banner */}
         <Box sx={{ flex: 1, backgroundColor: '#f0f0f0' }}>
-          <img
-            src={leftBannerImage}
-            alt="Left Banner"
-            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-          />
+          <img src={leftBannerImage} alt="Left Banner" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
         </Box>
-        
-        {/* Right Banner */}
         <Box sx={{ flex: 1, backgroundColor: '#e0e0e0' }}>
-          <img
-            src={rightBannerImage}
-            alt="Right Banner"
-            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-          />
+          <img src={rightBannerImage} alt="Right Banner" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
         </Box>
       </Box>
 
-      {/* Login Form */}
-      <Box 
+      <Box
         sx={{
           position: 'absolute',
-          width: '300px', // Keep the form lean
+          width: '300px',
           backgroundColor: '#ffffff',
           padding: '40px',
           borderRadius: '12px',
-          border: '2px solid transparent', // Set initial border to transparent
-          boxShadow: '0 0 15px rgba(64, 64, 64, 0.8)', // Dark grey neon effect
+          border: '2px solid transparent',
+          boxShadow: '0 0 15px rgba(64, 64, 64, 0.8)',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          '&::before': {
-            content: '""',
-            position: 'absolute',
-            top: '4px',
-            left: '4px',
-            right: '4px',
-            bottom: '4px',
-            border: '1px solid #f50057', // Pink border
-            borderRadius: '10px',
-            zIndex: -1,
-          },
         }}
       >
-        {/* Fancy Header Text */}
         <Typography
           variant="h2"
           component="h1"
           sx={{
             marginBottom: '20px',
-            color: '#6f4f28', // Brown color
-            fontFamily: 'Times New Roman', // Roman-style font
+            color: '#6f4f28',
+            fontFamily: 'Times New Roman',
             fontWeight: 'bold',
             textAlign: 'center',
           }}
@@ -110,12 +81,7 @@ const LoginPage = () => {
           Super Market
         </Typography>
 
-        {/* Logo */}
-        <img 
-          src={logo}
-          alt="Logo"
-          style={{ marginBottom: '20px', width: '100px', height: 'auto', display: 'block' }} 
-        />
+        <img src={logo} alt="Logo" style={{ marginBottom: '20px', width: '100px', height: 'auto', display: 'block' }} />
 
         {error && <Typography color="error" sx={{ marginBottom: '20px' }}>{error}</Typography>}
 
