@@ -1,14 +1,36 @@
 import React, { useState, useCallback } from 'react';
-import { 
-  Button, TextField, Table, TableBody, TableCell, TableContainer, 
-  TableHead, TableRow, Paper, Alert, Menu, MenuItem, Typography, 
-  Grid, IconButton
+import {
+  Button, TextField, Table, TableBody, TableCell, TableContainer,
+  TableHead, TableRow, Paper, Alert, Menu, MenuItem, Typography,
+  Grid, IconButton, Box, Container, Divider
 } from '@mui/material';
+import { styled } from '@mui/system';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import ReceiptIcon from '@mui/icons-material/Receipt';
 import DeleteIcon from '@mui/icons-material/Delete';
+import SearchIcon from '@mui/icons-material/Search';
 import products from '../Products/Products';
+
+
+const StyledPaper = styled(Paper)(({ theme }) => ({
+  padding: theme.spacing(3),
+  marginTop: theme.spacing(3),
+  backgroundColor: '#f5f5f5',
+}));
+
+const StyledButton = styled(Button)(({ theme }) => ({
+  marginTop: theme.spacing(2),
+  marginBottom: theme.spacing(2),
+  padding: theme.spacing(1, 3),
+}));
+
+const StyledTableContainer = styled(TableContainer)(({ theme }) => ({
+  marginTop: theme.spacing(3),
+  marginBottom: theme.spacing(3),
+  maxHeight: '400px',
+  overflowY: 'auto',
+}));
 
 const PointOfSale = () => {
   const [cart, setCart] = useState([]);
@@ -22,7 +44,7 @@ const PointOfSale = () => {
     setCart(prevCart => {
       const existingItem = prevCart.find(item => item.id === product.id);
       if (existingItem) {
-        return prevCart.map(item => 
+        return prevCart.map(item =>
           item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
         );
       } else {
@@ -57,8 +79,8 @@ const PointOfSale = () => {
 
   const handleBarcodeSubmit = useCallback((e) => {
     e.preventDefault();
-    const product = products.find(p => 
-      p.barcode.toLowerCase() === barcode.toLowerCase() || 
+    const product = products.find(p =>
+      p.barcode.toLowerCase() === barcode.toLowerCase() ||
       p.name.toLowerCase() === barcode.toLowerCase()
     );
     if (product) {
@@ -94,35 +116,40 @@ const PointOfSale = () => {
   }, []);
 
   return (
-    <Paper elevation={3} className="pos-container">
-      <Typography variant="h4" className="pos-header">Point of Sale</Typography>
-      
-      <div className="pos-body">
-        <form onSubmit={handleBarcodeSubmit} className="pos-form">
-          <Grid container spacing={2}>
-            <Grid item xs={12} sm={9}>
+    <Container maxWidth="lg">
+      <StyledPaper elevation={3}>
+        <Typography variant="h4" align="center" gutterBottom>
+          Point of Sale
+        </Typography>
+
+        <Box component="form" onSubmit={handleBarcodeSubmit} sx={{ mb: 3 }}>
+          <Grid container spacing={2} alignItems="center">
+            <Grid item xs={12} sm={8}>
               <TextField
                 fullWidth
                 value={barcode}
                 onChange={handleBarcodeChange}
                 placeholder="Scan or enter barcode/name"
                 variant="outlined"
+                InputProps={{
+                  startAdornment: <SearchIcon color="action" />,
+                }}
               />
             </Grid>
-            <Grid item xs={12} sm={3}>
-              <Button 
+            <Grid item xs={12} sm={4}>
+              <StyledButton
                 fullWidth
-                type="submit" 
-                variant="contained" 
+                type="submit"
+                variant="contained"
                 startIcon={<ShoppingCartIcon />}
               >
                 Add Item
-              </Button>
+              </StyledButton>
             </Grid>
           </Grid>
-        </form>
+        </Box>
 
-        {error && <Alert severity="error" className="pos-alert">{error}</Alert>}
+        {error && <Alert severity="error" sx={{ mb: 2 }}>{error}</Alert>}
 
         <Menu
           anchorEl={anchorEl}
@@ -133,11 +160,11 @@ const PointOfSale = () => {
           }}
         >
           {filteredProducts.map(product => (
-            <MenuItem 
-              key={product.id} 
+            <MenuItem
+              key={product.id}
               onClick={() => {
                 addToCart(product);
-                setAnchorEl(null); // Close the menu after selecting
+                setAnchorEl(null);
               }}
             >
               {product.name} - ${product.price.toFixed(2)}
@@ -145,8 +172,8 @@ const PointOfSale = () => {
           ))}
         </Menu>
 
-        <TableContainer component={Paper} className="pos-table">
-          <Table>
+        <StyledTableContainer component={Paper}>
+          <Table stickyHeader>
             <TableHead>
               <TableRow>
                 <TableCell>Product</TableCell>
@@ -164,7 +191,7 @@ const PointOfSale = () => {
                   <TableCell align="right">{item.quantity}</TableCell>
                   <TableCell align="right">${(item.price * item.quantity).toFixed(2)}</TableCell>
                   <TableCell align="right">
-                    <IconButton color="error" onClick={() => removeFromCart(item.id)}>
+                    <IconButton color="error" onClick={() => removeFromCart(item.id)} size="small">
                       <DeleteIcon />
                     </IconButton>
                   </TableCell>
@@ -172,9 +199,9 @@ const PointOfSale = () => {
               ))}
             </TableBody>
           </Table>
-        </TableContainer>
+        </StyledTableContainer>
 
-        <Grid container spacing={2} className="pos-actions">
+        <Grid container spacing={2} alignItems="center">
           <Grid item xs={12} sm={4}>
             <TextField
               fullWidth
@@ -183,50 +210,56 @@ const PointOfSale = () => {
               onChange={(e) => setDiscount(e.target.value)}
               placeholder="Discount %"
               variant="outlined"
+              size="small"
             />
           </Grid>
           <Grid item xs={12} sm={4}>
-            <Button 
+            <StyledButton
               fullWidth
-              onClick={applyDiscount} 
-              variant="contained" 
+              onClick={applyDiscount}
+              variant="contained"
               startIcon={<AttachMoneyIcon />}
+              size="small"
             >
               Apply Discount
-            </Button>
+            </StyledButton>
           </Grid>
           <Grid item xs={12} sm={4}>
-            <Typography variant="h6" align="right" className="pos-total">
+            <Typography variant="h6" align="right">
               Total: ${calculateTotal()}
             </Typography>
           </Grid>
         </Grid>
-      </div>
 
-      <Grid container spacing={2} className="pos-checkout">
-        <Grid item xs={12} sm={6}>
-          <Button 
-            fullWidth
-            onClick={handleCheckout} 
-            variant="contained" 
-            color="primary" 
-            startIcon={<AttachMoneyIcon />}
-          >
-            Checkout
-          </Button>
+        <Divider sx={{ my: 3 }} />
+
+        <Grid container spacing={2}>
+          <Grid item xs={12} sm={6}>
+            <StyledButton
+              fullWidth
+              onClick={handleCheckout}
+              variant="contained"
+              color="primary"
+              startIcon={<AttachMoneyIcon />}
+              size="large"
+            >
+              Checkout
+            </StyledButton>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <StyledButton
+              fullWidth
+              onClick={handlePrintReceipt}
+              variant="outlined"
+              startIcon={<ReceiptIcon />}
+              size="large"
+            >
+              Print Receipt
+            </StyledButton>
+          </Grid>
         </Grid>
-        <Grid item xs={12} sm={6}>
-          <Button 
-            fullWidth
-            onClick={handlePrintReceipt} 
-            variant="outlined" 
-            startIcon={<ReceiptIcon />}
-          >
-            Print Receipt
-          </Button>
-        </Grid>
-      </Grid>
-    </Paper>
+      </StyledPaper>
+    </Container>
   );
 };
 

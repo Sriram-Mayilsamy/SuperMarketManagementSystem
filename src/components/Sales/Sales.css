@@ -1,63 +1,133 @@
+
 .pos-container {
-  display: flex;
-  flex-direction: column;
-  height: 100vh; /* Full viewport height */
-  padding: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-  background-color: #f9f9f9; /* Light background for contrast */
+  background-color: #f5f5f5;
+  min-height: 100vh;
+  padding: 2rem 0;
+}
+
+.pos-paper {
+  padding: 2rem;
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
 }
 
 .pos-header {
-  text-align: center;
-  margin-bottom: 20px;
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
 }
 
-.pos-body {
-  flex: 1; /* Allow this section to take up available space */
-  overflow: auto; /* Enable scrolling if content overflows */
-  margin-bottom: 20px;
+.pos-search-field .MuiOutlinedInput-root {
+  background-color: #fff;
+  transition: box-shadow 0.3s ease;
 }
 
-.pos-alert {
-  margin-bottom: 20px;
+.pos-search-field .MuiOutlinedInput-root:hover {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.pos-add-button {
+  height: 100%;
+  text-transform: none;
+  font-weight: 600;
+}
+
+.pos-table-container {
+  margin: 1.5rem 0;
+  max-height: 400px;
+  overflow-y: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .pos-table {
-  margin-bottom: 20px;
+  background-color: #fff;
 }
 
-.pos-actions {
-  margin-top: 20px;
+.pos-table .MuiTableHead-root {
+  background-color: #f0f0f0;
+}
+
+.pos-table .MuiTableCell-head {
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.pos-table .MuiTableRow-root:nth-of-type(even) {
+  background-color: #f9f9f9;
+}
+
+.pos-delete-button {
+  transition: color 0.3s ease;
+}
+
+.pos-delete-button:hover {
+  color: #e74c3c;
+}
+
+.pos-discount-field .MuiOutlinedInput-root {
+  background-color: #fff;
+}
+
+.pos-apply-discount-button {
+  height: 100%;
+  text-transform: none;
+  font-weight: 600;
 }
 
 .pos-total {
-  font-weight: bold;
+  font-weight: 600;
+  color: #2c3e50;
 }
 
-.pos-checkout {
-  margin-top: auto; /* Pushes the checkout button to the bottom */
-  display: flex;
-  flex-direction: column;
+.pos-checkout-button, .pos-receipt-button {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  text-transform: none;
+  font-weight: 600;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.pos-checkout button {
-  width: 100%; /* Full width for the button */
-  margin: 5px 0; /* Space between buttons */
-  font-size: 0.9rem; /* Smaller font size for laptop view */
+.pos-checkout-button:hover, .pos-receipt-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Responsive Styles */
-@media (max-width: 768px) {
-  .pos-checkout button {
-    font-size: 0.8rem; /* Even smaller font size for smaller screens */
-  }
+.pos-checkout-button {
+  background-color: #2ecc71;
+  color: #fff;
+}
 
-  .pos-body {
-    margin-bottom: 10px;
+.pos-checkout-button:hover {
+  background-color: #27ae60;
+}
+
+.pos-receipt-button {
+  background-color: #fff;
+  color: #3498db;
+  border: 2px solid #3498db;
+}
+
+.pos-receipt-button:hover {
+  background-color: #3498db;
+  color: #fff;
+}
+
+@media (max-width: 600px) {
+  .pos-paper {
+    padding: 1rem;
   }
 
   .pos-header {
-    font-size: 1.5rem; /* Adjust header size for smaller screens */
+    font-size: 1.5rem;
+  }
+
+  .pos-add-button, .pos-apply-discount-button {
+    margin-top: 1rem;
+  }
+
+  .pos-checkout-button, .pos-receipt-button {
+    width: 100%;
+    margin-top: 1rem;
   }
 }
