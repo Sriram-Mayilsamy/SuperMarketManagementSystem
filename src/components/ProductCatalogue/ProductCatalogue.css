@@ -4,8 +4,8 @@
   margin: 0 auto;
   padding: 20px;
   box-sizing: border-box;
-  background-color: #f9f9f9; /* Light background for contrast */
-  color: #333; /* Default text color */
+  background-color: #9acff1; /* Light background for contrast */
+  color: #f7f7f7; /* Default text color */
   border-radius: 8px; /* Rounded corners for overall container */
 }
 
@@ -14,12 +14,13 @@
   font-weight: bold;
   text-align: center;
   margin-bottom: 20px;
-  color: #b8860b; /* Gold for the title */
+  color: #282a36; /* Gold for the title */
 }
 
 .search-container {
   position: relative;
   margin-bottom: 20px;
+  color: azure;
 }
 
 .search-input {
@@ -29,7 +30,7 @@
   border: 1px solid #b8860b; /* Gold border for input */
   border-radius: 4px;
   box-sizing: border-box;
-  background-color: white; /* White input field */
+  background-color: #ffffff; /* White input field */
 }
 
 .search-icon {
@@ -55,7 +56,7 @@
 }
 
 .product-card {
-  background-color: white;
+  background-color: #ffffff;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(184, 134, 11, 0.3); /* Gold shadow */
   overflow: hidden;

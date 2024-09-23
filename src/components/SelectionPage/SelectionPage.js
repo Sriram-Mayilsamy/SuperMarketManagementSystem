@@ -27,13 +27,12 @@ import PeopleIcon from '@mui/icons-material/People';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import SettingsIcon from '@mui/icons-material/Settings';
 
-
 const navItems = [
   { title: 'Dashboard', path: '/dashboard', icon: <DashboardIcon /> },
   { title: 'Product Catalogue', path: '/product-catalogue', icon: <InventoryIcon /> },
   { title: 'Sales', path: '/sales', icon: <ShoppingCartIcon /> },
-  { title: 'Customers', path: '/customers', icon: <PeopleIcon /> },
-  { title: 'Reports', path: '/reports', icon: <AssessmentIcon /> },
+  { title: 'Shopping Site', path: '/shopping', icon: <PeopleIcon /> }, // Renamed and updated
+  { title: 'Reports', path: '/report-generation', icon: <AssessmentIcon /> },
   { title: 'Settings', path: '/settings', icon: <SettingsIcon /> },
 ];
 
@@ -65,11 +64,11 @@ const SelectionPage = () => {
         <Toolbar>
           {isMobile && (
             <IconButton
-              color="inherit" // Inherit color
+              color="inherit"
               aria-label="open drawer"
               edge="start"
               onClick={handleDrawerToggle}
-              sx={{ mr: 2, color: 'black' }} // Set the color to black
+              sx={{ mr: 2, color: 'black' }}
             >
               <MenuIcon />
             </IconButton>
@@ -84,12 +83,12 @@ const SelectionPage = () => {
               component={Link} 
               to={item.path}
               sx={{
-                border: '2px solid gold', // Gold outline
-                color: 'black', // Black text
-                mx: 1, // Margin on left and right for spacing
+                border: '2px solid gold',
+                color: 'black',
+                mx: 1,
                 '&:hover': {
-                  backgroundColor: 'gold', // Change background on hover
-                  color: 'white', // Change text color on hover
+                  backgroundColor: 'gold',
+                  color: 'white',
                 }
               }}
             >
@@ -117,7 +116,6 @@ const SelectionPage = () => {
       </nav>
 
       <Container maxWidth="lg" sx={{ mt: 4, mb: 4, textAlign: 'center' }}>
-       
         <Typography variant="h4" component="h1" gutterBottom align="center" sx={{ color: 'gold', fontWeight: 'bold' }}>
           Welcome to Supermarket Management System
         </Typography>

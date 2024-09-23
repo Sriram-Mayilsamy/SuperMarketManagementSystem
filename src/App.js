@@ -6,8 +6,8 @@ import SelectionPage from './components/SelectionPage/SelectionPage';
 import Dashboard from './components/Dashboard/Dashboard';
 import ProductCatalogue from './components/ProductCatalogue/ProductCatalogue';
 import ReportGeneration from './components/ReportGeneration/ReportGeneration';
-import ShoppingSite from './components/ShoppingSite/ShoppingSite';
-import Sales from './components/Sales/Sales'; // New Sales component import
+import ShoppingSite from './components/ShoppingSite/ShoppingSite'; // Import ShoppingSite
+import Sales from './components/Sales/Sales'; // Import Sales
 import PrivateRoute from './components/Firebase/PrivateRoute';
 import { AuthProvider } from './components/Firebase/AuthContext';
 import NetworkStatusBar from './components/NetworkStatusBar/NetworkStatusBar';

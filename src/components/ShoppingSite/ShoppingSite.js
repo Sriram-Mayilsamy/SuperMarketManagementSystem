@@ -1,28 +1,82 @@
 import React from 'react';
-
+import './ShoppingSite.css';
 
 const ShoppingSite = () => {
-  // Sample data for products
-  const products = [
-    { id: 1, name: 'Product 1', price: '$10.00', description: 'Description for product 1' },
-    { id: 2, name: 'Product 2', price: '$15.00', description: 'Description for product 2' },
-    { id: 3, name: 'Product 3', price: '$20.00', description: 'Description for product 3' },
-    { id: 4, name: 'Product 4', price: '$25.00', description: 'Description for product 4' },
-  ];
-
   return (
-    <div className="shopping-site">
-      <h1>Welcome to the Shopping Site</h1>
-      <div className="product-list">
-        {products.map((product) => (
-          <div key={product.id} className="product-item">
-            <h2>{product.name}</h2>
-            <p>{product.price}</p>
-            <p>{product.description}</p>
-            <button className="buy-button">Buy Now</button>
+    <div className="shopping-homepage">
+      <header className="header">
+        <div className="logo">
+          <img src="/api/placeholder/120/50" alt="Your Shop" />
+        </div>
+        <div className="search-bar">
+          <input type="text" placeholder="Search products" />
+          <button className="search-button">Search</button>
+        </div>
+        <nav className="nav-links">
+          <a href="#">Hello, Sign in</a>
+          <a href="#">Orders</a>
+          <a href="#">Cart</a>
+        </nav>
+      </header>
+
+      <nav className="category-nav">
+        <ul>
+          <li><a href="#">All Products</a></li>
+          <li><a href="#">Top Sellers</a></li>
+          <li><a href="#">New Arrivals</a></li>
+          <li><a href="#">Fashion</a></li>
+          <li><a href="#">Electronics</a></li>
+          <li><a href="#">Offers</a></li>
+          <li><a href="#">Support</a></li>
+        </ul>
+      </nav>
+
+      <main className="main-content">
+        <section className="hero-section">
+          <img src="/api/placeholder/1200/300" alt="Banner" className="hero-image" />
+        </section>
+
+        <section className="product-grid">
+          <div className="product-card">
+            <img src="/api/placeholder/200/200" alt="Product 1" />
+            <h3>Product 1</h3>
+            <p>₹999</p>
+            <button>Add to Cart</button>
           </div>
-        ))}
-      </div>
+          <div className="product-card">
+            <img src="/api/placeholder/200/200" alt="Product 2" />
+            <h3>Product 2</h3>
+            <p>₹1,499</p>
+            <button>Add to Cart</button>
+          </div>
+          <div className="product-card">
+            <img src="/api/placeholder/200/200" alt="Product 3" />
+            <h3>Product 3</h3>
+            <p>₹799</p>
+            <button>Add to Cart</button>
+          </div>
+          <div className="product-card">
+            <img src="/api/placeholder/200/200" alt="Product 4" />
+            <h3>Product 4</h3>
+            <p>₹2,999</p>
+            <button>Add to Cart</button>
+          </div>
+        </section>
+      </main>
+
+      <footer className="footer">
+        <div className="footer-links">
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Payment Methods</a></li>
+            <li><a href="#">Help & Support</a></li>
+          </ul>
+        </div>
+        <div className="copyright">
+          <p>&copy; 2024, YourShop.com, All Rights Reserved</p>
+        </div>
+      </footer>
     </div>
   );
 };
