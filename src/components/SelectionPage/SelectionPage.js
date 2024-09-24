@@ -26,12 +26,13 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import PeopleIcon from '@mui/icons-material/People';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import SettingsIcon from '@mui/icons-material/Settings';
+import './SelectionPage.css';
 
 const navItems = [
   { title: 'Dashboard', path: '/dashboard', icon: <DashboardIcon /> },
   { title: 'Product Catalogue', path: '/product-catalogue', icon: <InventoryIcon /> },
   { title: 'Sales', path: '/sales', icon: <ShoppingCartIcon /> },
-  { title: 'Shopping Site', path: '/shopping', icon: <PeopleIcon /> }, // Renamed and updated
+  { title: 'Shopping Site', path: '/shopping', icon: <PeopleIcon /> },
   { title: 'Reports', path: '/report-generation', icon: <AssessmentIcon /> },
   { title: 'Settings', path: '/settings', icon: <SettingsIcon /> },
 ];
@@ -46,7 +47,7 @@ const SelectionPage = () => {
   };
 
   const drawer = (
-    <div>
+    <div className="drawer">
       <List>
         {navItems.map((item) => (
           <ListItem button key={item.title} component={Link} to={item.path}>
@@ -60,7 +61,7 @@ const SelectionPage = () => {
 
   return (
     <div className="selection-page">
-      <AppBar position="static" sx={{ backgroundColor: 'white', borderBottom: '2px solid gold' }}>
+      <AppBar position="static" className="app-bar">
         <Toolbar>
           {isMobile && (
             <IconButton
@@ -68,12 +69,12 @@ const SelectionPage = () => {
               aria-label="open drawer"
               edge="start"
               onClick={handleDrawerToggle}
-              sx={{ mr: 2, color: 'black' }}
+              className="menu-button"
             >
               <MenuIcon />
             </IconButton>
           )}
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: 'gold', fontWeight: 'bold' }}>
+          <Typography variant="h6" component="div" className="title">
             Supermarket Management
           </Typography>
           {!isMobile && navItems.map((item) => (
@@ -82,15 +83,7 @@ const SelectionPage = () => {
               color="inherit" 
               component={Link} 
               to={item.path}
-              sx={{
-                border: '2px solid gold',
-                color: 'black',
-                mx: 1,
-                '&:hover': {
-                  backgroundColor: 'gold',
-                  color: 'white',
-                }
-              }}
+              className="nav-button"
             >
               {item.title}
             </Button>
@@ -106,29 +99,28 @@ const SelectionPage = () => {
           ModalProps={{
             keepMounted: true,
           }}
-          sx={{
-            display: { xs: 'block', sm: 'none' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: 240 },
+          classes={{
+            paper: 'drawer-paper',
           }}
         >
           {drawer}
         </Drawer>
       </nav>
 
-      <Container maxWidth="lg" sx={{ mt: 4, mb: 4, textAlign: 'center' }}>
-        <Typography variant="h4" component="h1" gutterBottom align="center" sx={{ color: 'gold', fontWeight: 'bold' }}>
+      <Container maxWidth="lg" className="main-content">
+        <Typography variant="h4" component="h1" gutterBottom align="center" className="welcome-text">
           Welcome to Supermarket Management System
         </Typography>
         <Grid container spacing={3}>
           {navItems.map((item) => (
             <Grid item xs={12} sm={6} md={4} key={item.title}>
-              <Card sx={{ textAlign: 'center', border: '2px solid gold' }}>
+              <Card className="card">
                 <CardContent>
                   <ListItemIcon>{item.icon}</ListItemIcon>
-                  <Typography variant="h5" sx={{ color: 'gold' }}>{item.title}</Typography>
+                  <Typography variant="h5" className="card-title">{item.title}</Typography>
                 </CardContent>
-                <CardActions sx={{ justifyContent: 'center' }}>
-                  <Button size="small" component={Link} to={item.path} sx={{ color: 'gold' }}>Go to {item.title}</Button>
+                <CardActions className="card-actions">
+                  <Button size="small" component={Link} to={item.path} className="card-button">Go to {item.title}</Button>
                 </CardActions>
               </Card>
             </Grid>

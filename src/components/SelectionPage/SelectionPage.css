@@ -1,42 +1,143 @@
+:root {
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #2c2c2c;
+  --text-primary: #e0e0e0;
+  --text-secondary: #a0a0a0;
+  --accent-color: #4a90e2;
+  --accent-hover: #5a9fef;
+  --border-color: #3a3a3a;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 .selection-page {
   min-height: 100vh;
-  background-color: #f5f5f5;
+  background-color: var(--bg-primary);
 }
 
-.MuiAppBar-root {
-  background-color: white; /* White background for the header */
-  border-bottom: 2px solid gold; /* Gold border for the header */
+.app-bar {
+  background-color: var(--bg-secondary) !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.MuiTypography-h6 {
-  font-weight: bold; /* Bold text for the title */
-  color: gold; /* Gold color for the title text */
+.title {
+  color: var(--text-primary) !important;
+  font-weight: 600;
 }
 
-.MuiCard-root {
+.nav-button {
+  color: var(--text-secondary) !important;
+  margin: 0 8px;
+  transition: color 0.3s ease;
+}
+
+.nav-button:hover {
+  color: var(--accent-color) !important;
+}
+
+.drawer, .drawer-paper {
+  background-color: var(--bg-secondary) !important;
+  color: var(--text-primary) !important;
+}
+
+.main-content {
+  margin-top: 32px;
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.welcome-text {
+  color: var(--accent-color);
+  font-weight: 600;
+  margin-bottom: 32px;
+}
+
+.card {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-  border: 2px solid gold; /* Gold border for the card */
+  transition: all 0.3s ease-in-out;
 }
 
-.MuiCard-root:hover {
+.card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.MuiCardContent-root {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.card-title {
+  color: var(--text-primary);
+  margin-top: 16px;
+  font-weight: 500;
+}
+
+.card-actions {
   justify-content: center;
-  text-align: center;
+  padding-bottom: 16px;
+}
+
+.card-button {
+  color: var(--accent-color) !important;
+  transition: background-color 0.3s ease;
+}
+
+.card-button:hover {
+  background-color: rgba(74, 144, 226, 0.1) !important;
+}
+
+.menu-button {
+  color: var(--text-secondary) !important;
 }
 
 .MuiSvgIcon-root {
-  font-size: 3rem;
+  color: var(--accent-color);
+  font-size: 2.5rem;
   margin-bottom: 1rem;
+}
+
+.MuiListItemIcon-root {
+  color: var(--accent-color) !important;
+}
+
+.MuiListItemText-primary {
+  color: var(--text-primary) !important;
+}
+
+/* Additional styles for better contrast and readability */
+.MuiTypography-root {
+  color: var(--text-secondary);
+}
+
+.MuiButton-root {
+  text-transform: none;
+  font-weight: 500;
+}
+
+.MuiListItem-root:hover {
+  background-color: rgba(74, 144, 226, 0.1) !important;
+}
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bg-secondary);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border-color);
 }
